@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The 90 | A Community in Support of Human Garage</title>
+<style>
+body{font-family:Arial,sans-serif;max-width:1100px;margin:auto;padding:20px;background:#f7f7f7;color:#222}
+.container{background:white;padding:25px;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+h1,h2{color:#1f3c5a}
+.section{margin-top:25px;padding-top:15px;border-top:1px solid #ddd}
+label{display:block;margin-top:10px}
+input[type=text],input[type=email],select,textarea{width:100%;padding:8px;margin-top:4px}
+textarea{min-height:80px}
+.rating{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;margin:6px 0}
+.buttons{position:sticky;bottom:0;background:white;padding:15px;border-top:2px solid #ddd}
+button{padding:12px 18px;margin-right:10px;cursor:pointer}
+.progress{background:#ddd;height:20px;border-radius:20px;overflow:hidden;margin:15px 0}
+.progress-bar{height:100%;width:0%;background:#4caf50}
+.small{font-size:0.9em;color:#666}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>The 90</h1>
+<h3>A Community in Support of Human Garage</h3>
+
+<p>This survey is designed to understand the needs, aspirations, challenges and opportunities within our community. The information gathered will help shape future training, collaborations, events, mentorship and community initiatives.</p>
+
+<div class="progress"><div id="bar" class="progress-bar"></div></div>
+<p class="small">Complete as much as you wish.</p>
+
+<div class="section">
+<h2>1. About You</h2>
+<label>Name<input type="text" id="name"></label>
+<label>Email<input type="email" id="email"></label>
+<label>Country<input type="text" id="country"></label>
+<label>Time Zone<input type="text" id="timezone"></label>
+<label>Status
+<select id="status">
+<option>Aspirant</option><option>Student</option><option>Certified Coach</option>
+<option>Advanced Coach</option><option>Trainer</option><option>Other</option>
+</select></label>
+</div>
+
+<div class="section">
+<h2>2. Community Health (1=Low 5=High)</h2>
+<div id="community"></div>
+</div>
+
+<div class="section">
+<h2>3. Training Priorities (1=Low 5=High)</h2>
+<div id="training"></div>
+</div>
+
+<div class="section">
+<h2>4. Coaching Confidence (1=Low 5=High)</h2>
+<div id="confidence"></div>
+</div>
+
+<div class="section">
+<h2>5. Business Development Needs</h2>
+<div id="business"></div>
+</div>
+
+<div class="section">
+<h2>6. Collaboration Marketplace</h2>
+<div id="collaboration"></div>
+</div>
+
+<div class="section">
+<h2>7. Hidden Talent Discovery</h2>
+<div id="talent"></div>
+<label>Other Skills<textarea id="otherSkills"></textarea></label>
+</div>
+
+<div class="section">
+<h2>8. Future Vision</h2>
+<label>What should this community become?<textarea id="future"></textarea></label>
+<label>What is currently missing?<textarea id="missing"></textarea></label>
+<label>What opportunity excites you most?<textarea id="opportunity"></textarea></label>
+<label>If you were leading for a year, what would you change?<textarea id="change"></textarea></label>
+</div>
+
+<div class="section">
+<h2>9. Final Thoughts</h2>
+<label>Additional comments<textarea id="comments"></textarea></label>
+<label>May we contact you about opportunities?
+<select id="contact"><option>Yes</option><option>No</option></select></label>
+</div>
+
+<div class="buttons">
+<button onclick="window.print()">📄 Save as PDF</button>
+<button onclick="emailResults()">📧 Email Responses</button>
+</div>
+</div>
+
+<script>
+const communityItems=["Supported","Connected","Know where to find help","Comfortable asking questions","Opportunities to collaborate","Recognised for contributions"];
+const trainingItems=["Fascia Manoeuvres","Nervous System Regulation","Emotional Embodiment","Breathwork","Anatomy","Public Speaking","Livestreaming","YouTube","Social Media","Business Development","Retreat Design","Leadership"];
+const confidenceItems=["1:1 Sessions","Group Classes","Online Classes","Livestreaming","Workshops","Retreats","Discovery Calls","Selling Services","Content Creation","Public Speaking"];
+const businessItems=["Finding Clients","Website","Social Media","Content Creation","Sales Conversations","Pricing","Retreats","Online Programmes","Email Marketing","Branding"];
+const collaborationItems=["Co-host Livestreams","Co-teach Classes","Practice Sessions","Workshops","Content Creation","Local Meetups","Retreats","Online Courses","Accountability Partner","Referral Partnerships"];
+const talentItems=["Marketing","Graphic Design","Video Editing","Web Design","Event Planning","Finance","Writing","Technology","Leadership","Project Management"];
+
+function ratingBlock(id,items){
+ let div=document.getElementById(id);
+ items.forEach(i=>{
+  div.innerHTML+=`<div class="rating"><span>${i}</span><select><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div>`;
+ });
+}
+ratingBlock("community",communityItems);
+ratingBlock("training",trainingItems);
+ratingBlock("confidence",confidenceItems);
+
+function checkboxBlock(id,items){
+ let div=document.getElementById(id);
+ items.forEach(i=>{
+  div.innerHTML+=`<label><input type="checkbox" value="${i}"> ${i}</label>`;
+ });
+}
+checkboxBlock("business",businessItems);
+checkboxBlock("collaboration",collaborationItems);
+checkboxBlock("talent",talentItems);
+
+function emailResults(){
+ let body=`THE 90 COMMUNITY SURVEY
+
+Name: ${document.getElementById('name').value}
+Email: ${document.getElementById('email').value}
+Country: ${document.getElementById('country').value}
+Timezone: ${document.getElementById('timezone').value}
+Status: ${document.getElementById('status').value}
+
+Future Vision:
+${document.getElementById('future').value}
+
+Missing:
+${document.getElementById('missing').value}
+
+Opportunity:
+${document.getElementById('opportunity').value}
+
+Changes:
+${document.getElementById('change').value}
+
+Other Skills:
+${document.getElementById('otherSkills').value}
+
+Comments:
+${document.getElementById('comments').value}
+
+Contact Permission:
+${document.getElementById('contact').value}`;
+
+ window.location.href="mailto:unlimitedpaul@pm.me?subject=The 90 Community Survey Response&body="+encodeURIComponent(body);
+}
+</script>
+</body>
+</html>

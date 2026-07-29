@@ -143,7 +143,7 @@
     <input type="hidden" name="_subject" value="The 90 — Community Needs Analysis">
     <input type="hidden" name="_captcha" value="false">
     <input type="hidden" name="_template" value="table">
-    <input type="hidden" name="_next" value="">
+    <input type="hidden" name="_next" value="https://silencioeslaverdad-eng.github.io/communityneedsanalysis/?submitted=true">
 
   <!-- Section 1 -->
   <h2>1. About You</h2>
@@ -309,6 +309,15 @@
 </div>
 
 <script>
+// Check if user was redirected back after submission
+var urlParams = new URLSearchParams(window.location.search);
+if (urlParams.get('submitted') === 'true') {
+  document.getElementById('surveyForm').style.display = 'none';
+  document.getElementById('successMsg').style.display = 'block';
+  // Clean the URL
+  window.history.replaceState({}, document.title, window.location.pathname);
+}
+
 // Visual feedback for rating selections
 document.querySelectorAll('.rating-scale input[type="radio"]').forEach(function(radio) {
   radio.addEventListener('change', function() {
@@ -322,12 +331,11 @@ document.querySelectorAll('.rating-scale input[type="radio"]').forEach(function(
 
 // Form submission handling
 document.getElementById('surveyForm').addEventListener('submit', function(e) {
-  // Show loading state
   var btn = document.querySelector('.submit-btn');
   btn.textContent = 'Submitting...';
   btn.disabled = true;
 });
 </script>
 
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a22db394eeda8b07',t:'MTc4NTM0NDY1Mw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a22dc26b8bfb88a3',t:'MTc4NTM0NTI2MQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

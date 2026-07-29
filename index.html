@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The 90 | Community Needs Analysis</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -17,65 +16,52 @@
   .container { max-width: 720px; margin: 0 auto; }
   
   h1 { font-size: 28px; margin-bottom: 4px; color: #1a2e2e; }
-  h2 { font-size: 18px; margin: 32px 0 16px; color: #1a2e2e; border-bottom: 2px solid #c9a96e; padding-bottom: 6px; }
+  h2 { font-size: 20px; margin: 36px 0 16px; color: #1a2e2e; border-bottom: 2px solid #c9a96e; padding-bottom: 8px; }
   h3 { font-size: 15px; margin: 20px 0 10px; color: #444; }
   .subtitle { font-size: 14px; color: #666; margin-bottom: 8px; }
   .intro { font-size: 15px; color: #555; margin-bottom: 8px; }
   .note { font-size: 13px; color: #888; font-style: italic; margin-bottom: 24px; }
 
-  .field { margin-bottom: 16px; }
-  .field label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px; color: #333; }
+  .field { margin-bottom: 20px; }
+  .field label { display: block; font-size: 15px; font-weight: 600; margin-bottom: 8px; color: #333; }
   .field input[type="text"],
   .field input[type="email"],
   .field textarea,
   .field select {
     width: 100%;
-    padding: 12px;
+    padding: 14px;
     border: 1px solid #ccc;
-    border-radius: 6px;
+    border-radius: 8px;
     font-size: 16px;
     font-family: inherit;
     background: #fff;
   }
-  .field textarea { min-height: 80px; resize: vertical; }
-  .field select { appearance: auto; }
+  .field textarea { min-height: 100px; resize: vertical; }
 
-  /* Rating scales - big tap targets for mobile */
-  .rating-group { margin-bottom: 16px; }
-  .rating-group .rating-label { font-size: 14px; font-weight: 600; margin-bottom: 8px; color: #333; }
-  .rating-scale { display: flex; gap: 8px; flex-wrap: wrap; }
+  /* Rating scales - BIG tap targets for mobile */
+  .rating-group { margin-bottom: 24px; }
+  .rating-group .rating-label { font-size: 15px; font-weight: 600; margin-bottom: 10px; color: #333; }
+  .rating-scale { display: flex; gap: 10px; }
   .rating-scale label {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 48px;
-    height: 48px;
+    width: 56px;
+    height: 56px;
     border: 2px solid #ccc;
-    border-radius: 8px;
-    font-size: 18px;
-    font-weight: 600;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: 700;
     cursor: pointer;
     transition: all 0.15s;
     background: #fff;
     color: #333;
   }
   .rating-scale input[type="radio"] { display: none; }
-  .rating-scale input[type="radio"]:checked + span {
+  .rating-scale label.selected {
     background: #1a2e2e;
     color: #fff;
     border-color: #1a2e2e;
-  }
-  .rating-scale label:has(input:checked) {
-    background: #1a2e2e;
-    color: #fff;
-    border-color: #1a2e2e;
-  }
-  .rating-scale span {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
   }
 
   /* Checkboxes - big tap targets */
@@ -83,71 +69,64 @@
   .checkbox-group label {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 12px;
+    gap: 14px;
+    padding: 14px 16px;
     border: 1px solid #ddd;
-    border-radius: 6px;
-    margin-bottom: 6px;
+    border-radius: 8px;
+    margin-bottom: 8px;
     cursor: pointer;
-    font-size: 15px;
+    font-size: 16px;
     background: #fff;
-    transition: background 0.15s;
+    transition: all 0.15s;
   }
   .checkbox-group label:active { background: #e8f0ee; }
   .checkbox-group input[type="checkbox"] {
-    width: 22px;
-    height: 22px;
+    width: 24px;
+    height: 24px;
     accent-color: #1a2e2e;
     flex-shrink: 0;
   }
 
-  .rating-header { font-size: 12px; color: #888; margin-bottom: 12px; }
+  .rating-header { font-size: 13px; color: #888; margin-bottom: 16px; display: block; }
 
-  /* Buttons */
-  .actions {
-    display: flex;
-    gap: 12px;
-    margin: 40px 0 24px;
-    flex-wrap: wrap;
-  }
-  .actions button {
-    flex: 1;
-    min-width: 140px;
-    padding: 16px 20px;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.15s;
-  }
-  .btn-pdf {
+  /* Submit button */
+  .submit-btn {
+    display: block;
+    width: 100%;
+    padding: 18px;
     background: #1a2e2e;
     color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    margin: 40px 0 24px;
+    transition: background 0.15s;
   }
-  .btn-pdf:hover { background: #2d4a4a; }
-  .btn-email {
-    background: #c9a96e;
-    color: #1a2e2e;
-  }
-  .btn-email:hover { background: #d4b87a; }
+  .submit-btn:hover { background: #2d4a4a; }
+  .submit-btn:active { background: #0f1f1f; }
 
   .success-msg {
     display: none;
     background: #e8f5e9;
-    border: 1px solid #4caf50;
-    border-radius: 8px;
-    padding: 16px;
-    margin: 16px 0;
-    font-size: 15px;
+    border: 2px solid #4caf50;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+    font-size: 16px;
     color: #2e7d32;
+    text-align: center;
   }
 
   @media (max-width: 480px) {
+    body { padding: 12px; }
     h1 { font-size: 24px; }
-    .rating-scale label { width: 44px; height: 44px; font-size: 16px; }
-    .actions { flex-direction: column; }
-    .actions button { width: 100%; }
+    h2 { font-size: 18px; margin: 28px 0 14px; }
+    .rating-scale { gap: 8px; }
+    .rating-scale label { width: 50px; height: 50px; font-size: 18px; }
+    .checkbox-group label { padding: 12px 14px; font-size: 15px; }
+    .field input, .field textarea, .field select { padding: 12px; font-size: 15px; }
   }
 </style>
 </head>
@@ -159,16 +138,21 @@
   <p class="intro">This survey is designed to understand the needs, aspirations, challenges and opportunities within our community. The information gathered will help shape future training, collaborations, events, mentorship and community initiatives.</p>
   <p class="note">Complete as much as you wish.</p>
 
-  <form id="surveyForm">
+  <form id="surveyForm" action="https://formsubmit.co/permanentchange@pm.me" method="POST">
+    <!-- FormSubmit.co settings -->
+    <input type="hidden" name="_subject" value="The 90 — Community Needs Analysis">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_next" value="">
 
   <!-- Section 1 -->
   <h2>1. About You</h2>
-  <div class="field"><label>Name</label><input type="text" name="name" id="name"></div>
-  <div class="field"><label>Email</label><input type="email" name="email" id="email"></div>
-  <div class="field"><label>Country</label><input type="text" name="country" id="country"></div>
-  <div class="field"><label>Time Zone</label><input type="text" name="timezone" id="timezone"></div>
+  <div class="field"><label>Name</label><input type="text" name="Name" id="name"></div>
+  <div class="field"><label>Email</label><input type="email" name="Email" id="email"></div>
+  <div class="field"><label>Country</label><input type="text" name="Country" id="country"></div>
+  <div class="field"><label>Time Zone</label><input type="text" name="Time Zone" id="timezone"></div>
   <div class="field"><label>Status</label>
-    <select name="status" id="status">
+    <select name="Status" id="status">
       <option value="">— Select —</option>
       <option>Trainee Coach</option>
       <option>Certified Coach</option>
@@ -179,260 +163,171 @@
   </div>
 
   <!-- Section 2 -->
-  <h2>2. Community Health <span class="rating-header">(1 = Low, 5 = High)</span></h2>
+  <h2>2. Community Health <span class="rating-header">1 = Low, 5 = High</span></h2>
   <div class="rating-group"><div class="rating-label">Supported</div><div class="rating-scale" data-name="supported">
-    <label><input type="radio" name="supported" value="1"><span>1</span></label>
-    <label><input type="radio" name="supported" value="2"><span>2</span></label>
-    <label><input type="radio" name="supported" value="3"><span>3</span></label>
-    <label><input type="radio" name="supported" value="4"><span>4</span></label>
-    <label><input type="radio" name="supported" value="5"><span>5</span></label>
+    <label><input type="radio" name="Supported" value="1"><span>1</span></label>
+    <label><input type="radio" name="Supported" value="2"><span>2</span></label>
+    <label><input type="radio" name="Supported" value="3"><span>3</span></label>
+    <label><input type="radio" name="Supported" value="4"><span>4</span></label>
+    <label><input type="radio" name="Supported" value="5"><span>5</span></label>
   </div></div>
-  <div class="rating-group"><div class="rating-label">Connected</div><div class="rating-scale" data-name="connected">
-    <label><input type="radio" name="connected" value="1"><span>1</span></label>
-    <label><input type="radio" name="connected" value="2"><span>2</span></label>
-    <label><input type="radio" name="connected" value="3"><span>3</span></label>
-    <label><input type="radio" name="connected" value="4"><span>4</span></label>
-    <label><input type="radio" name="connected" value="5"><span>5</span></label>
+  <div class="rating-group"><div class="rating-label">Connected</div><div class="rating-scale">
+    <label><input type="radio" name="Connected" value="1"><span>1</span></label>
+    <label><input type="radio" name="Connected" value="2"><span>2</span></label>
+    <label><input type="radio" name="Connected" value="3"><span>3</span></label>
+    <label><input type="radio" name="Connected" value="4"><span>4</span></label>
+    <label><input type="radio" name="Connected" value="5"><span>5</span></label>
   </div></div>
-  <div class="rating-group"><div class="rating-label">Know where to find help</div><div class="rating-scale" data-name="findhelp">
-    <label><input type="radio" name="findhelp" value="1"><span>1</span></label>
-    <label><input type="radio" name="findhelp" value="2"><span>2</span></label>
-    <label><input type="radio" name="findhelp" value="3"><span>3</span></label>
-    <label><input type="radio" name="findhelp" value="4"><span>4</span></label>
-    <label><input type="radio" name="findhelp" value="5"><span>5</span></label>
+  <div class="rating-group"><div class="rating-label">Know where to find help</div><div class="rating-scale">
+    <label><input type="radio" name="Find Help" value="1"><span>1</span></label>
+    <label><input type="radio" name="Find Help" value="2"><span>2</span></label>
+    <label><input type="radio" name="Find Help" value="3"><span>3</span></label>
+    <label><input type="radio" name="Find Help" value="4"><span>4</span></label>
+    <label><input type="radio" name="Find Help" value="5"><span>5</span></label>
   </div></div>
-  <div class="rating-group"><div class="rating-label">Comfortable asking questions</div><div class="rating-scale" data-name="questions">
-    <label><input type="radio" name="questions" value="1"><span>1</span></label>
-    <label><input type="radio" name="questions" value="2"><span>2</span></label>
-    <label><input type="radio" name="questions" value="3"><span>3</span></label>
-    <label><input type="radio" name="questions" value="4"><span>4</span></label>
-    <label><input type="radio" name="questions" value="5"><span>5</span></label>
+  <div class="rating-group"><div class="rating-label">Comfortable asking questions</div><div class="rating-scale">
+    <label><input type="radio" name="Ask Questions" value="1"><span>1</span></label>
+    <label><input type="radio" name="Ask Questions" value="2"><span>2</span></label>
+    <label><input type="radio" name="Ask Questions" value="3"><span>3</span></label>
+    <label><input type="radio" name="Ask Questions" value="4"><span>4</span></label>
+    <label><input type="radio" name="Ask Questions" value="5"><span>5</span></label>
   </div></div>
-  <div class="rating-group"><div class="rating-label">Opportunities to collaborate</div><div class="rating-scale" data-name="collaborate">
-    <label><input type="radio" name="collaborate" value="1"><span>1</span></label>
-    <label><input type="radio" name="collaborate" value="2"><span>2</span></label>
-    <label><input type="radio" name="collaborate" value="3"><span>3</span></label>
-    <label><input type="radio" name="collaborate" value="4"><span>4</span></label>
-    <label><input type="radio" name="collaborate" value="5"><span>5</span></label>
+  <div class="rating-group"><div class="rating-label">Opportunities to collaborate</div><div class="rating-scale">
+    <label><input type="radio" name="Collaborate" value="1"><span>1</span></label>
+    <label><input type="radio" name="Collaborate" value="2"><span>2</span></label>
+    <label><input type="radio" name="Collaborate" value="3"><span>3</span></label>
+    <label><input type="radio" name="Collaborate" value="4"><span>4</span></label>
+    <label><input type="radio" name="Collaborate" value="5"><span>5</span></label>
   </div></div>
-  <div class="rating-group"><div class="rating-label">Recognised for contributions</div><div class="rating-scale" data-name="recognised">
-    <label><input type="radio" name="recognised" value="1"><span>1</span></label>
-    <label><input type="radio" name="recognised" value="2"><span>2</span></label>
-    <label><input type="radio" name="recognised" value="3"><span>3</span></label>
-    <label><input type="radio" name="recognised" value="4"><span>4</span></label>
-    <label><input type="radio" name="recognised" value="5"><span>5</span></label>
+  <div class="rating-group"><div class="rating-label">Recognised for contributions</div><div class="rating-scale">
+    <label><input type="radio" name="Recognised" value="1"><span>1</span></label>
+    <label><input type="radio" name="Recognised" value="2"><span>2</span></label>
+    <label><input type="radio" name="Recognised" value="3"><span>3</span></label>
+    <label><input type="radio" name="Recognised" value="4"><span>4</span></label>
+    <label><input type="radio" name="Recognised" value="5"><span>5</span></label>
   </div></div>
 
   <!-- Section 3 -->
-  <h2>3. Training Priorities <span class="rating-header">(1 = Low, 5 = High)</span></h2>
-  <div class="rating-group"><div class="rating-label">Fascia Manoeuvres</div><div class="rating-scale"><label><input type="radio" name="tp_fascia" value="1"><span>1</span></label><label><input type="radio" name="tp_fascia" value="2"><span>2</span></label><label><input type="radio" name="tp_fascia" value="3"><span>3</span></label><label><input type="radio" name="tp_fascia" value="4"><span>4</span></label><label><input type="radio" name="tp_fascia" value="5"><span>5</span></label></div></div>
-  <div class="rating-group"><div class="rating-label">Nervous System Regulation</div><div class="rating-scale"><label><input type="radio" name="tp_nervous" value="1"><span>1</span></label><label><input type="radio" name="tp_nervous" value="2"><span>2</span></label><label><input type="radio" name="tp_nervous" value="3"><span>3</span></label><label><input type="radio" name="tp_nervous" value="4"><span>4</span></label><label><input type="radio" name="tp_nervous" value="5"><span>5</span></label></div></div>
-  <div class="rating-group"><div class="rating-label">Emotional Embodiment</div><div class="rating-scale"><label><input type="radio" name="tp_emotional" value="1"><span>1</span></label><label><input type="radio" name="tp_emotional" value="2"><span>2</span></label><label><input type="radio" name="tp_emotional" value="3"><span>3</span></label><label><input type="radio" name="tp_emotional" value="4"><span>4</span></label><label><input type="radio" name="tp_emotional" value="5"><span>5</span></label></div></div>
-  <div class="rating-group"><div class="rating-label">Breathwork</div><div class="rating-scale"><label><input type="radio" name="tp_breath" value="1"><span>1</span></label><label><input type="radio" name="tp_breath" value="2"><span>2</span></label><label><input type="radio" name="tp_breath" value="3"><span>3</span></label><label><input type="radio" name="tp_breath" value="4"><span>4</span></label><label><input type="radio" name="tp_breath" value="5"><span>5</span></label></div></div>
-  <div class="rating-group"><div class="rating-label">Anatomy</div><div class="rating-scale"><label><input type="radio" name="tp_anatomy" value="1"><span>1</span></label><label><input type="radio" name="tp_anatomy" value="2"><span>2</span></label><label><input type="radio" name="tp_anatomy" value="3"><span>3</span></label><label><input type="radio" name="tp_anatomy" value="4"><span>4</span></label><label><input type="radio" name="tp_anatomy" value="5"><span>5</span></label></div></div>
-  <div class="rating-group"><div class="rating-label">Public Speaking</div><div class="rating-scale"><label><input type="radio" name="tp_speaking" value="1"><span>1</span></label><label><input type="radio" name="tp_speaking" value="2"><span>2</span></label><label><input type="radio" name="tp_speaking" value="3"><span>3</span></label><label><input type="radio" name="tp_speaking" value="4"><span>4</span></label><label><input type="radio" name="tp_speaking" value="5"><span>5</span></label></div></div>
-  <div class="rating-group"><div class="rating-label">Livestreaming</div><div class="rating-scale"><label><input type="radio" name="tp_live" value="1"><span>1</span></label><label><input type="radio" name="tp_live" value="2"><span>2</span></label><label><input type="radio" name="tp_live" value="3"><span>3</span></label><label><input type="radio" name="tp_live" value="4"><span>4</span></label><label><input type="radio" name="tp_live" value="5"><span>5</span></label></div></div>
-  <div class="rating-group"><div class="rating-label">YouTube</div><div class="rating-scale"><label><input type="radio" name="tp_youtube" value="1"><span>1</span></label><label><input type="radio" name="tp_youtube" value="2"><span>2</span></label><label><input type="radio" name="tp_youtube" value="3"><span>3</span></label><label><input type="radio" name="tp_youtube" value="4"><span>4</span></label><label><input type="radio" name="tp_youtube" value="5"><span>5</span></label></div></div>
-  <div class="rating-group"><div class="rating-label">Social Media</div><div class="rating-scale"><label><input type="radio" name="tp_social" value="1"><span>1</span></label><label><input type="radio" name="tp_social" value="2"><span>2</span></label><label><input type="radio" name="tp_social" value="3"><span>3</span></label><label><input type="radio" name="tp_social" value="4"><span>4</span></label><label><input type="radio" name="tp_social" value="5"><span>5</span></label></div></div>
-  <div class="rating-group"><div class="rating-label">Business Development</div><div class="rating-scale"><label><input type="radio" name="tp_business" value="1"><span>1</span></label><label><input type="radio" name="tp_business" value="2"><span>2</span></label><label><input type="radio" name="tp_business" value="3"><span>3</span></label><label><input type="radio" name="tp_business" value="4"><span>4</span></label><label><input type="radio" name="tp_business" value="5"><span>5</span></label></div></div>
-  <div class="rating-group"><div class="rating-label">Retreat Design</div><div class="rating-scale"><label><input type="radio" name="tp_retreat" value="1"><span>1</span></label><label><input type="radio" name="tp_retreat" value="2"><span>2</span></label><label><input type="radio" name="tp_retreat" value="3"><span>3</span></label><label><input type="radio" name="tp_retreat" value="4"><span>4</span></label><label><input type="radio" name="tp_retreat" value="5"><span>5</span></label></div></div>
-  <div class="rating-group"><div class="rating-label">Leadership</div><div class="rating-scale"><label><input type="radio" name="tp_leadership" value="1"><span>1</span></label><label><input type="radio" name="tp_leadership" value="2"><span>2</span></label><label><input type="radio" name="tp_leadership" value="3"><span>3</span></label><label><input type="radio" name="tp_leadership" value="4"><span>4</span></label><label><input type="radio" name="tp_leadership" value="5"><span>5</span></label></div></div>
+  <h2>3. Training Priorities <span class="rating-header">1 = Low, 5 = High</span></h2>
+  <div class="rating-group"><div class="rating-label">Fascia Manoeuvres</div><div class="rating-scale"><label><input type="radio" name="TP: Fascia" value="1"><span>1</span></label><label><input type="radio" name="TP: Fascia" value="2"><span>2</span></label><label><input type="radio" name="TP: Fascia" value="3"><span>3</span></label><label><input type="radio" name="TP: Fascia" value="4"><span>4</span></label><label><input type="radio" name="TP: Fascia" value="5"><span>5</span></label></div></div>
+  <div class="rating-group"><div class="rating-label">Nervous System Regulation</div><div class="rating-scale"><label><input type="radio" name="TP: Nervous System" value="1"><span>1</span></label><label><input type="radio" name="TP: Nervous System" value="2"><span>2</span></label><label><input type="radio" name="TP: Nervous System" value="3"><span>3</span></label><label><input type="radio" name="TP: Nervous System" value="4"><span>4</span></label><label><input type="radio" name="TP: Nervous System" value="5"><span>5</span></label></div></div>
+  <div class="rating-group"><div class="rating-label">Emotional Embodiment</div><div class="rating-scale"><label><input type="radio" name="TP: Emotional" value="1"><span>1</span></label><label><input type="radio" name="TP: Emotional" value="2"><span>2</span></label><label><input type="radio" name="TP: Emotional" value="3"><span>3</span></label><label><input type="radio" name="TP: Emotional" value="4"><span>4</span></label><label><input type="radio" name="TP: Emotional" value="5"><span>5</span></label></div></div>
+  <div class="rating-group"><div class="rating-label">Breathwork</div><div class="rating-scale"><label><input type="radio" name="TP: Breathwork" value="1"><span>1</span></label><label><input type="radio" name="TP: Breathwork" value="2"><span>2</span></label><label><input type="radio" name="TP: Breathwork" value="3"><span>3</span></label><label><input type="radio" name="TP: Breathwork" value="4"><span>4</span></label><label><input type="radio" name="TP: Breathwork" value="5"><span>5</span></label></div></div>
+  <div class="rating-group"><div class="rating-label">Anatomy</div><div class="rating-scale"><label><input type="radio" name="TP: Anatomy" value="1"><span>1</span></label><label><input type="radio" name="TP: Anatomy" value="2"><span>2</span></label><label><input type="radio" name="TP: Anatomy" value="3"><span>3</span></label><label><input type="radio" name="TP: Anatomy" value="4"><span>4</span></label><label><input type="radio" name="TP: Anatomy" value="5"><span>5</span></label></div></div>
+  <div class="rating-group"><div class="rating-label">Public Speaking</div><div class="rating-scale"><label><input type="radio" name="TP: Speaking" value="1"><span>1</span></label><label><input type="radio" name="TP: Speaking" value="2"><span>2</span></label><label><input type="radio" name="TP: Speaking" value="3"><span>3</span></label><label><input type="radio" name="TP: Speaking" value="4"><span>4</span></label><label><input type="radio" name="TP: Speaking" value="5"><span>5</span></label></div></div>
+  <div class="rating-group"><div class="rating-label">Livestreaming</div><div class="rating-scale"><label><input type="radio" name="TP: Livestreaming" value="1"><span>1</span></label><label><input type="radio" name="TP: Livestreaming" value="2"><span>2</span></label><label><input type="radio" name="TP: Livestreaming" value="3"><span>3</span></label><label><input type="radio" name="TP: Livestreaming" value="4"><span>4</span></label><label><input type="radio" name="TP: Livestreaming" value="5"><span>5</span></label></div></div>
+  <div class="rating-group"><div class="rating-label">YouTube</div><div class="rating-scale"><label><input type="radio" name="TP: YouTube" value="1"><span>1</span></label><label><input type="radio" name="TP: YouTube" value="2"><span>2</span></label><label><input type="radio" name="TP: YouTube" value="3"><span>3</span></label><label><input type="radio" name="TP: YouTube" value="4"><span>4</span></label><label><input type="radio" name="TP: YouTube" value="5"><span>5</span></label></div></div>
+  <div class="rating-group"><div class="rating-label">Social Media</div><div class="rating-scale"><label><input type="radio" name="TP: Social Media" value="1"><span>1</span></label><label><input type="radio" name="TP: Social Media" value="2"><span>2</span></label><label><input type="radio" name="TP: Social Media" value="3"><span>3</span></label><label><input type="radio" name="TP: Social Media" value="4"><span>4</span></label><label><input type="radio" name="TP: Social Media" value="5"><span>5</span></label></div></div>
+  <div class="rating-group"><div class="rating-label">Business Development</div><div class="rating-scale"><label><input type="radio" name="TP: Business" value="1"><span>1</span></label><label><input type="radio" name="TP: Business" value="2"><span>2</span></label><label><input type="radio" name="TP: Business" value="3"><span>3</span></label><label><input type="radio" name="TP: Business" value="4"><span>4</span></label><label><input type="radio" name="TP: Business" value="5"><span>5</span></label></div></div>
+  <div class="rating-group"><div class="rating-label">Retreat Design</div><div class="rating-scale"><label><input type="radio" name="TP: Retreats" value="1"><span>1</span></label><label><input type="radio" name="TP: Retreats" value="2"><span>2</span></label><label><input type="radio" name="TP: Retreats" value="3"><span>3</span></label><label><input type="radio" name="TP: Retreats" value="4"><span>4</span></label><label><input type="radio" name="TP: Retreats" value="5"><span>5</span></label></div></div>
+  <div class="rating-group"><div class="rating-label">Leadership</div><div class="rating-scale"><label><input type="radio" name="TP: Leadership" value="1"><span>1</span></label><label><input type="radio" name="TP: Leadership" value="2"><span>2</span></label><label><input type="radio" name="TP: Leadership" value="3"><span>3</span></label><label><input type="radio" name="TP: Leadership" value="4"><span>4</span></label><label><input type="radio" name="TP: Leadership" value="5"><span>5</span></label></div></div>
 
   <!-- Section 4 -->
-  <h2>4. Coaching Confidence <span class="rating-header">(1 = Low, 5 = High)</span></h2>
-  <div class="rating-group"><div class="rating-label">1:1 Sessions</div><div class="rating-scale"><label><input type="radio" name="cc_1to1" value="1"><span>1</span></label><label><input type="radio" name="cc_1to1" value="2"><span>2</span></label><label><input type="radio" name="cc_1to1" value="3"><span>3</span></label><label><input type="radio" name="cc_1to1" value="4"><span>4</span></label><label><input type="radio" name="cc_1to1" value="5"><span>5</span></label></div></div>
-  <div class="rating-group"><div class="rating-label">Group Classes</div><div class="rating-scale"><label><input type="radio" name="cc_group" value="1"><span>1</span></label><label><input type="radio" name="cc_group" value="2"><span>2</span></label><label><input type="radio" name="cc_group" value="3"><span>3</span></label><label><input type="radio" name="cc_group" value="4"><span>4</span></label><label><input type="radio" name="cc_group" value="5"><span>5</span></label></div></div>
-  <div class="rating-group"><div class="rating-label">Online Classes</div><div class="rating-scale"><label><input type="radio" name="cc_online" value="1"><span>1</span></label><label><input type="radio" name="cc_online" value="2"><span>2</span></label><label><input type="radio" name="cc_online" value="3"><span>3</span></label><label><input type="radio" name="cc_online" value="4"><span>4</span></label><label><input type="radio" name="cc_online" value="5"><span>5</span></label></div></div>
-  <div class="rating-group"><div class="rating-label">Livestreaming</div><div class="rating-scale"><label><input type="radio" name="cc_live" value="1"><span>1</span></label><label><input type="radio" name="cc_live" value="2"><span>2</span></label><label><input type="radio" name="cc_live" value="3"><span>3</span></label><label><input type="radio" name="cc_live" value="4"><span>4</span></label><label><input type="radio" name="cc_live" value="5"><span>5</span></label></div></div>
-  <div class="rating-group"><div class="rating-label">Workshops</div><div class="rating-scale"><label><input type="radio" name="cc_workshops" value="1"><span>1</span></label><label><input type="radio" name="cc_workshops" value="2"><span>2</span></label><label><input type="radio" name="cc_workshops" value="3"><span>3</span></label><label><input type="radio" name="cc_workshops" value="4"><span>4</span></label><label><input type="radio" name="cc_workshops" value="5"><span>5</span></label></div></div>
-  <div class="rating-group"><div class="rating-label">Retreats</div><div class="rating-scale"><label><input type="radio" name="cc_retreats" value="1"><span>1</span></label><label><input type="radio" name="cc_retreats" value="2"><span>2</span></label><label><input type="radio" name="cc_retreats" value="3"><span>3</span></label><label><input type="radio" name="cc_retreats" value="4"><span>4</span></label><label><input type="radio" name="cc_retreats" value="5"><span>5</span></label></div></div>
-  <div class="rating-group"><div class="rating-label">Discovery Calls</div><div class="rating-scale"><label><input type="radio" name="cc_discovery" value="1"><span>1</span></label><label><input type="radio" name="cc_discovery" value="2"><span>2</span></label><label><input type="radio" name="cc_discovery" value="3"><span>3</span></label><label><input type="radio" name="cc_discovery" value="4"><span>4</span></label><label><input type="radio" name="cc_discovery" value="5"><span>5</span></label></div></div>
-  <div class="rating-group"><div class="rating-label">Selling Services</div><div class="rating-scale"><label><input type="radio" name="cc_selling" value="1"><span>1</span></label><label><input type="radio" name="cc_selling" value="2"><span>2</span></label><label><input type="radio" name="cc_selling" value="3"><span>3</span></label><label><input type="radio" name="cc_selling" value="4"><span>4</span></label><label><input type="radio" name="cc_selling" value="5"><span>5</span></label></div></div>
-  <div class="rating-group"><div class="rating-label">Content Creation</div><div class="rating-scale"><label><input type="radio" name="cc_content" value="1"><span>1</span></label><label><input type="radio" name="cc_content" value="2"><span>2</span></label><label><input type="radio" name="cc_content" value="3"><span>3</span></label><label><input type="radio" name="cc_content" value="4"><span>4</span></label><label><input type="radio" name="cc_content" value="5"><span>5</span></label></div></div>
-  <div class="rating-group"><div class="rating-label">Public Speaking</div><div class="rating-scale"><label><input type="radio" name="cc_speaking" value="1"><span>1</span></label><label><input type="radio" name="cc_speaking" value="2"><span>2</span></label><label><input type="radio" name="cc_speaking" value="3"><span>3</span></label><label><input type="radio" name="cc_speaking" value="4"><span>4</span></label><label><input type="radio" name="cc_speaking" value="5"><span>5</span></label></div></div>
+  <h2>4. Coaching Confidence <span class="rating-header">1 = Low, 5 = High</span></h2>
+  <div class="rating-group"><div class="rating-label">1:1 Sessions</div><div class="rating-scale"><label><input type="radio" name="CC: 1:1" value="1"><span>1</span></label><label><input type="radio" name="CC: 1:1" value="2"><span>2</span></label><label><input type="radio" name="CC: 1:1" value="3"><span>3</span></label><label><input type="radio" name="CC: 1:1" value="4"><span>4</span></label><label><input type="radio" name="CC: 1:1" value="5"><span>5</span></label></div></div>
+  <div class="rating-group"><div class="rating-label">Group Classes</div><div class="rating-scale"><label><input type="radio" name="CC: Group" value="1"><span>1</span></label><label><input type="radio" name="CC: Group" value="2"><span>2</span></label><label><input type="radio" name="CC: Group" value="3"><span>3</span></label><label><input type="radio" name="CC: Group" value="4"><span>4</span></label><label><input type="radio" name="CC: Group" value="5"><span>5</span></label></div></div>
+  <div class="rating-group"><div class="rating-label">Online Classes</div><div class="rating-scale"><label><input type="radio" name="CC: Online" value="1"><span>1</span></label><label><input type="radio" name="CC: Online" value="2"><span>2</span></label><label><input type="radio" name="CC: Online" value="3"><span>3</span></label><label><input type="radio" name="CC: Online" value="4"><span>4</span></label><label><input type="radio" name="CC: Online" value="5"><span>5</span></label></div></div>
+  <div class="rating-group"><div class="rating-label">Livestreaming</div><div class="rating-scale"><label><input type="radio" name="CC: Live" value="1"><span>1</span></label><label><input type="radio" name="CC: Live" value="2"><span>2</span></label><label><input type="radio" name="CC: Live" value="3"><span>3</span></label><label><input type="radio" name="CC: Live" value="4"><span>4</span></label><label><input type="radio" name="CC: Live" value="5"><span>5</span></label></div></div>
+  <div class="rating-group"><div class="rating-label">Workshops</div><div class="rating-scale"><label><input type="radio" name="CC: Workshops" value="1"><span>1</span></label><label><input type="radio" name="CC: Workshops" value="2"><span>2</span></label><label><input type="radio" name="CC: Workshops" value="3"><span>3</span></label><label><input type="radio" name="CC: Workshops" value="4"><span>4</span></label><label><input type="radio" name="CC: Workshops" value="5"><span>5</span></label></div></div>
+  <div class="rating-group"><div class="rating-label">Retreats</div><div class="rating-scale"><label><input type="radio" name="CC: Retreats" value="1"><span>1</span></label><label><input type="radio" name="CC: Retreats" value="2"><span>2</span></label><label><input type="radio" name="CC: Retreats" value="3"><span>3</span></label><label><input type="radio" name="CC: Retreats" value="4"><span>4</span></label><label><input type="radio" name="CC: Retreats" value="5"><span>5</span></label></div></div>
+  <div class="rating-group"><div class="rating-label">Discovery Calls</div><div class="rating-scale"><label><input type="radio" name="CC: Discovery" value="1"><span>1</span></label><label><input type="radio" name="CC: Discovery" value="2"><span>2</span></label><label><input type="radio" name="CC: Discovery" value="3"><span>3</span></label><label><input type="radio" name="CC: Discovery" value="4"><span>4</span></label><label><input type="radio" name="CC: Discovery" value="5"><span>5</span></label></div></div>
+  <div class="rating-group"><div class="rating-label">Selling Services</div><div class="rating-scale"><label><input type="radio" name="CC: Selling" value="1"><span>1</span></label><label><input type="radio" name="CC: Selling" value="2"><span>2</span></label><label><input type="radio" name="CC: Selling" value="3"><span>3</span></label><label><input type="radio" name="CC: Selling" value="4"><span>4</span></label><label><input type="radio" name="CC: Selling" value="5"><span>5</span></label></div></div>
+  <div class="rating-group"><div class="rating-label">Content Creation</div><div class="rating-scale"><label><input type="radio" name="CC: Content" value="1"><span>1</span></label><label><input type="radio" name="CC: Content" value="2"><span>2</span></label><label><input type="radio" name="CC: Content" value="3"><span>3</span></label><label><input type="radio" name="CC: Content" value="4"><span>4</span></label><label><input type="radio" name="CC: Content" value="5"><span>5</span></label></div></div>
+  <div class="rating-group"><div class="rating-label">Public Speaking</div><div class="rating-scale"><label><input type="radio" name="CC: Speaking" value="1"><span>1</span></label><label><input type="radio" name="CC: Speaking" value="2"><span>2</span></label><label><input type="radio" name="CC: Speaking" value="3"><span>3</span></label><label><input type="radio" name="CC: Speaking" value="4"><span>4</span></label><label><input type="radio" name="CC: Speaking" value="5"><span>5</span></label></div></div>
 
   <!-- Section 5 -->
   <h2>5. Business Development Needs</h2>
   <div class="checkbox-group">
-    <label><input type="checkbox" name="biz" value="Finding Clients"> Finding Clients</label>
-    <label><input type="checkbox" name="biz" value="Website"> Website</label>
-    <label><input type="checkbox" name="biz" value="Social Media"> Social Media</label>
-    <label><input type="checkbox" name="biz" value="Content Creation"> Content Creation</label>
-    <label><input type="checkbox" name="biz" value="Sales Conversations"> Sales Conversations</label>
-    <label><input type="checkbox" name="biz" value="Pricing"> Pricing</label>
-    <label><input type="checkbox" name="biz" value="Retreats"> Retreats</label>
-    <label><input type="checkbox" name="biz" value="Online Programmes"> Online Programmes</label>
-    <label><input type="checkbox" name="biz" value="Email Marketing"> Email Marketing</label>
-    <label><input type="checkbox" name="biz" value="Branding"> Branding</label>
+    <label><input type="checkbox" name="Business Needs" value="Finding Clients"> Finding Clients</label>
+    <label><input type="checkbox" name="Business Needs" value="Website"> Website</label>
+    <label><input type="checkbox" name="Business Needs" value="Social Media"> Social Media</label>
+    <label><input type="checkbox" name="Business Needs" value="Content Creation"> Content Creation</label>
+    <label><input type="checkbox" name="Business Needs" value="Sales Conversations"> Sales Conversations</label>
+    <label><input type="checkbox" name="Business Needs" value="Pricing"> Pricing</label>
+    <label><input type="checkbox" name="Business Needs" value="Retreats"> Retreats</label>
+    <label><input type="checkbox" name="Business Needs" value="Online Programmes"> Online Programmes</label>
+    <label><input type="checkbox" name="Business Needs" value="Email Marketing"> Email Marketing</label>
+    <label><input type="checkbox" name="Business Needs" value="Branding"> Branding</label>
   </div>
 
   <!-- Section 6 -->
   <h2>6. Collaboration Marketplace</h2>
   <div class="checkbox-group">
-    <label><input type="checkbox" name="collab" value="Co-host Livestreams"> Co-host Livestreams</label>
-    <label><input type="checkbox" name="collab" value="Co-teach Classes"> Co-teach Classes</label>
-    <label><input type="checkbox" name="collab" value="Practice Sessions"> Practice Sessions</label>
-    <label><input type="checkbox" name="collab" value="Workshops"> Workshops</label>
-    <label><input type="checkbox" name="collab" value="Content Creation"> Content Creation</label>
-    <label><input type="checkbox" name="collab" value="Local Meetups"> Local Meetups</label>
-    <label><input type="checkbox" name="collab" value="Retreats"> Retreats</label>
-    <label><input type="checkbox" name="collab" value="Online Courses"> Online Courses</label>
-    <label><input type="checkbox" name="collab" value="Accountability Partner"> Accountability Partner</label>
-    <label><input type="checkbox" name="collab" value="Referral Partnerships"> Referral Partnerships</label>
+    <label><input type="checkbox" name="Collaboration" value="Co-host Livestreams"> Co-host Livestreams</label>
+    <label><input type="checkbox" name="Collaboration" value="Co-teach Classes"> Co-teach Classes</label>
+    <label><input type="checkbox" name="Collaboration" value="Practice Sessions"> Practice Sessions</label>
+    <label><input type="checkbox" name="Collaboration" value="Workshops"> Workshops</label>
+    <label><input type="checkbox" name="Collaboration" value="Content Creation"> Content Creation</label>
+    <label><input type="checkbox" name="Collaboration" value="Local Meetups"> Local Meetups</label>
+    <label><input type="checkbox" name="Collaboration" value="Retreats"> Retreats</label>
+    <label><input type="checkbox" name="Collaboration" value="Online Courses"> Online Courses</label>
+    <label><input type="checkbox" name="Collaboration" value="Accountability Partner"> Accountability Partner</label>
+    <label><input type="checkbox" name="Collaboration" value="Referral Partnerships"> Referral Partnerships</label>
   </div>
 
   <!-- Section 7 -->
   <h2>7. Hidden Talent Discovery</h2>
   <div class="checkbox-group">
-    <label><input type="checkbox" name="talent" value="Marketing"> Marketing</label>
-    <label><input type="checkbox" name="talent" value="Graphic Design"> Graphic Design</label>
-    <label><input type="checkbox" name="talent" value="Video Editing"> Video Editing</label>
-    <label><input type="checkbox" name="talent" value="Web Design"> Web Design</label>
-    <label><input type="checkbox" name="talent" value="Event Planning"> Event Planning</label>
-    <label><input type="checkbox" name="talent" value="Finance"> Finance</label>
-    <label><input type="checkbox" name="talent" value="Writing"> Writing</label>
-    <label><input type="checkbox" name="talent" value="Technology"> Technology</label>
-    <label><input type="checkbox" name="talent" value="Leadership"> Leadership</label>
-    <label><input type="checkbox" name="talent" value="Project Management"> Project Management</label>
+    <label><input type="checkbox" name="Talents" value="Marketing"> Marketing</label>
+    <label><input type="checkbox" name="Talents" value="Graphic Design"> Graphic Design</label>
+    <label><input type="checkbox" name="Talents" value="Video Editing"> Video Editing</label>
+    <label><input type="checkbox" name="Talents" value="Web Design"> Web Design</label>
+    <label><input type="checkbox" name="Talents" value="Event Planning"> Event Planning</label>
+    <label><input type="checkbox" name="Talents" value="Finance"> Finance</label>
+    <label><input type="checkbox" name="Talents" value="Writing"> Writing</label>
+    <label><input type="checkbox" name="Talents" value="Technology"> Technology</label>
+    <label><input type="checkbox" name="Talents" value="Leadership"> Leadership</label>
+    <label><input type="checkbox" name="Talents" value="Project Management"> Project Management</label>
   </div>
-  <div class="field"><label>Other Skills</label><textarea name="other_skills" id="other_skills"></textarea></div>
+  <div class="field"><label>Other Skills</label><textarea name="Other Skills" id="other_skills"></textarea></div>
 
   <!-- Section 8 -->
   <h2>8. Future Vision</h2>
-  <div class="field"><label>What should this community become?</label><textarea name="vision_become" id="vision_become"></textarea></div>
-  <div class="field"><label>What is currently missing?</label><textarea name="vision_missing" id="vision_missing"></textarea></div>
-  <div class="field"><label>What opportunity excites you most?</label><textarea name="vision_opportunity" id="vision_opportunity"></textarea></div>
-  <div class="field"><label>If you were leading for a year, what would you change?</label><textarea name="vision_change" id="vision_change"></textarea></div>
+  <div class="field"><label>What should this community become?</label><textarea name="Vision: Become" id="vision_become"></textarea></div>
+  <div class="field"><label>What is currently missing?</label><textarea name="Vision: Missing" id="vision_missing"></textarea></div>
+  <div class="field"><label>What opportunity excites you most?</label><textarea name="Vision: Opportunity" id="vision_opportunity"></textarea></div>
+  <div class="field"><label>If you were leading for a year, what would you change?</label><textarea name="Vision: Change" id="vision_change"></textarea></div>
 
   <!-- Section 9 -->
   <h2>9. Final Thoughts</h2>
-  <div class="field"><label>Additional comments</label><textarea name="comments" id="comments"></textarea></div>
+  <div class="field"><label>Additional comments</label><textarea name="Comments" id="comments"></textarea></div>
   <div class="field"><label>May we contact you about opportunities?</label>
-    <div class="rating-scale" style="max-width:200px;">
-      <label><input type="radio" name="contact" value="Yes"><span>Yes</span></label>
-      <label><input type="radio" name="contact" value="No"><span>No</span></label>
+    <div class="rating-scale" style="max-width:220px;">
+      <label><input type="radio" name="Contact" value="Yes"><span>Yes</span></label>
+      <label><input type="radio" name="Contact" value="No"><span>No</span></label>
     </div>
   </div>
 
+  <button type="submit" class="submit-btn">Submit Survey</button>
+
   </form>
 
-  <div class="actions">
-    <button class="btn-pdf" onclick="savePDF()">📄 Save as PDF</button>
-    <button class="btn-email" onclick="emailResponses()">📧 Email Responses</button>
+  <div class="success-msg" id="successMsg">
+    ✓ Thank you! Your responses have been submitted.
   </div>
-
-  <div class="success-msg" id="successMsg"></div>
 
 </div>
 
 <script>
-function collectData() {
-  var form = document.getElementById('surveyForm');
-  var data = {};
-  
-  // Text inputs
-  var inputs = form.querySelectorAll('input[type="text"], input[type="email"], textarea, select');
-  inputs.forEach(function(el) {
-    if (el.value.trim()) data[el.name] = el.value.trim();
-  });
-  
-  // Radio buttons
-  var radios = form.querySelectorAll('input[type="radio"]:checked');
-  radios.forEach(function(el) {
-    data[el.name] = el.value;
-  });
-  
-  // Checkboxes
-  var checks = {};
-  form.querySelectorAll('input[type="checkbox"]:checked').forEach(function(el) {
-    if (!checks[el.name]) checks[el.name] = [];
-    checks[el.name].push(el.value);
-  });
-  Object.keys(checks).forEach(function(key) {
-    data[key] = checks[key].join(', ');
-  });
-  
-  return data;
-}
-
-function formatForEmail(data) {
-  var lines = [];
-  lines.push('THE 90 — COMMUNITY NEEDS ANALYSIS');
-  lines.push('================================');
-  lines.push('');
-  
-  var sections = {
-    '1. ABOUT YOU': ['name','email','country','timezone','status'],
-    '2. COMMUNITY HEALTH': ['supported','connected','findhelp','questions','collaborate','recognised'],
-    '3. TRAINING PRIORITIES': ['tp_fascia','tp_nervous','tp_emotional','tp_breath','tp_anatomy','tp_speaking','tp_live','tp_youtube','tp_social','tp_business','tp_retreat','tp_leadership'],
-    '4. COACHING CONFIDENCE': ['cc_1to1','cc_group','cc_online','cc_live','cc_workshops','cc_retreats','cc_discovery','cc_selling','cc_content','cc_speaking'],
-    '5. BUSINESS DEVELOPMENT': ['biz'],
-    '6. COLLABORATION': ['collab'],
-    '7. HIDDEN TALENTS': ['talent','other_skills'],
-    '8. FUTURE VISION': ['vision_become','vision_missing','vision_opportunity','vision_change'],
-    '9. FINAL THOUGHTS': ['comments','contact']
-  };
-  
-  Object.keys(sections).forEach(function(section) {
-    lines.push(section);
-    lines.push('---');
-    sections[section].forEach(function(key) {
-      if (data[key]) {
-        var label = key.replace(/_/g, ' ').replace(/\b\w/g, function(l){return l.toUpperCase()});
-        if (key.startsWith('tp_')) label = key.replace('tp_', '').replace(/\b\w/g, function(l){return l.toUpperCase()});
-        if (key.startsWith('cc_')) label = key.replace('cc_', '').replace(/\b\w/g, function(l){return l.toUpperCase()});
-        lines.push(label + ': ' + data[key]);
-      }
+// Visual feedback for rating selections
+document.querySelectorAll('.rating-scale input[type="radio"]').forEach(function(radio) {
+  radio.addEventListener('change', function() {
+    var scale = this.closest('.rating-scale');
+    scale.querySelectorAll('label').forEach(function(lbl) {
+      lbl.classList.remove('selected');
     });
-    lines.push('');
+    this.closest('label').classList.add('selected');
   });
-  
-  return lines.join('\n');
-}
+});
 
-function savePDF() {
-  var element = document.getElementById('survey-content');
-  var data = collectData();
-  
-  // Hide buttons for PDF
-  document.querySelector('.actions').style.display = 'none';
-  
-  var opt = {
-    margin: 10,
-    filename: 'The90_Survey_' + (data.name || 'response') + '.pdf',
-    image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: { scale: 2 },
-    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-  };
-  
-  html2pdf().set(opt).from(element).save().then(function() {
-    document.querySelector('.actions').style.display = 'flex';
-    showSuccess('PDF saved! Check your downloads folder.');
-  }).catch(function() {
-    document.querySelector('.actions').style.display = 'flex';
-    // Fallback: use browser print
-    window.print();
-  });
-}
-
-function emailResponses() {
-  var data = collectData();
-  var formatted = formatForEmail(data);
-  var subject = 'The 90 Survey — ' + (data.name || 'Community Response');
-  var body = encodeURIComponent(formatted);
-  var mailtoLink = 'mailto:permanentchange@pm.me?subject=' + encodeURIComponent(subject) + '&body=' + body;
-  
-  window.location.href = mailtoLink;
-  showSuccess('Email app opened with your responses. Hit send!');
-}
-
-function showSuccess(msg) {
-  var el = document.getElementById('successMsg');
-  el.textContent = msg;
-  el.style.display = 'block';
-  setTimeout(function() { el.style.display = 'none'; }, 5000);
-}
+// Form submission handling
+document.getElementById('surveyForm').addEventListener('submit', function(e) {
+  // Show loading state
+  var btn = document.querySelector('.submit-btn');
+  btn.textContent = 'Submitting...';
+  btn.disabled = true;
+});
 </script>
 
-</body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a22db394eeda8b07',t:'MTc4NTM0NDY1Mw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
